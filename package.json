@@ -1,7 +1,7 @@
 {
-  "name": "react-webpack-babel",
-  "version": "0.0.2",
-  "description": "React Webpack Babel Starter Kit",
+  "name": "open-freecell-game-engine",
+  "version": "0.0.1",
+  "description": "Open Freecell Game Engine",
   "main": "''",
   "scripts": {
     "build": "webpack --progress --profile --colors",
@@ -18,7 +18,7 @@
     "Starter",
     "template"
   ],
-  "author": "Ali Al Dallal",
+  "author": "Dor Tzur",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/alicoding/react-webpack-babel/issues"
