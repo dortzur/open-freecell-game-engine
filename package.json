@@ -2,11 +2,10 @@
   "name": "freecell-game-engine",
   "version": "0.0.1",
   "description": "An open source freecell game engine implemantation",
-  "main": "index.js",
+  "main": "src/index.js",
   "files": [
     "test",
-    "src",
-    "index.js"
+    "src"
   ],
   "dependencies": {
     "node-libs-browser": "1.0.0"
@@ -38,10 +37,10 @@
     "check:examples": "npm run build:examples && npm run test:examples",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
-    "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack src/index.js dist/redux.js",
-    "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack src/index.js dist/redux.min.js",
+    "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack src/index.js ",
+    "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack src/index.js ",
     "build:examples": "cross-env BABEL_ENV=commonjs babel-node examples/buildAll.js",
-    "buildCross": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min && node ./build/es3ify",
+    "buildCross": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
     "prepublish": "npm run clean && npm run check:src && npm run build",
     "docs:clean": "rimraf _book",
     "docs:prepare": "gitbook install",
