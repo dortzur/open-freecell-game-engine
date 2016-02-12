@@ -32,21 +32,11 @@
     "test": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
     "test:cov": "cross-env BABEL_ENV=commonjs babel-node $(npm bin)/isparta cover $(npm bin)/_mocha -- --recursive",
-    "test:examples": "cross-env BABEL_ENV=commonjs babel-node examples/testAll.js",
     "check:src": "npm run lint && npm run test",
-    "check:examples": "npm run build:examples && npm run test:examples",
-    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
-    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
     "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack src/index.js ",
     "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack src/index.js ",
-    "build:examples": "cross-env BABEL_ENV=commonjs babel-node examples/buildAll.js",
     "buildCross": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
-    "prepublish": "npm run clean && npm run check:src && npm run build",
-    "docs:clean": "rimraf _book",
-    "docs:prepare": "gitbook install",
-    "docs:build": "npm run docs:prepare && gitbook build -g reactjs/redux",
-    "docs:watch": "npm run docs:prepare && gitbook serve",
-    "docs:publish": "npm run docs:clean && npm run docs:build && cp CNAME _book && cd _book && git init && git commit --allow-empty -m 'update book' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update book' && git push git@github.com:reactjs/redux gh-pages --force"
+    "prepublish": "npm run clean && npm run check:src && npm run build"
   },
   "repository": {
     "type": "git",
