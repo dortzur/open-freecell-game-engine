@@ -1,34 +1,14 @@
 {
-  "name": "open-freecell-game-engine",
+  "name": "freecell-game-engine",
   "version": "0.0.1",
-  "description": "Open Freecell Game Engine",
-  "main": "''",
-  "scripts": {
-    "build": "webpack --progress --profile --colors",
-    "dev": "webpack-dev-server --progress --profile --colors --hot"
+  "description": "An open source freecell game engine implemantation",
+  "main": "index.js",
+  "directories": {
+    "test": "test",
+    "src":"src"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/alicoding/react-webpack-babel"
-  },
-  "keywords": [
-    "React",
-    "Webpack",
-    "Babel",
-    "Starter",
-    "template"
-  ],
-  "author": "Dor Tzur",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/alicoding/react-webpack-babel/issues"
-  },
-  "homepage": "https://github.com/alicoding/react-webpack-babel#readme",
   "dependencies": {
-    "bootstrap": "3.3.5",
-    "node-libs-browser": "1.0.0",
-    "react": "0.14.7",
-    "react-dom": "0.14.6"
+    "node-libs-browser": "1.0.0"
   },
   "devDependencies": {
     "babel-core": "6.5.1",
@@ -45,5 +25,25 @@
     "url-loader": "0.5.6",
     "webpack": "1.12.13",
     "webpack-dev-server": "1.14.1"
-  }
+  },
+  "scripts": {
+    "test": "mocha",
+    "build": "webpack --progress --profile --colors",
+    "dev": "webpack-dev-server --progress --profile --colors --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/open-freecell/game-engine.git"
+  },
+  "keywords": [
+    "freecell",
+    "game",
+    "engine"
+  ],
+  "author": "Dor Tzur",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/open-freecell/game-engine/issues"
+  },
+  "homepage": "https://github.com/open-freecell/game-engine#readme"
 }
