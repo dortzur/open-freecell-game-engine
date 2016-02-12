@@ -1,6 +1,6 @@
 'use strict';
 const notation = require("./notation");
-var srand = require("../utils/srand");
+var srand = require("./srand");
 
 const _initialDeck = [];
 
