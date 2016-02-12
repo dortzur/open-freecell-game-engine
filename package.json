@@ -32,7 +32,7 @@
     "test": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
     "test:cov": "cross-env BABEL_ENV=commonjs babel-node $(npm bin)/isparta cover $(npm bin)/_mocha -- --recursive",
-    "check:src": "npm run lint && npm run test",
+    "check:src": " npm run test",
     "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack src/index.js ",
     "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack src/index.js ",
     "buildCross": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
