@@ -1,4 +1,4 @@
-const GameEngine = {};
+
 var Deck = require("./deck");
 function newGame(gameNumber) {
     var deck = Deck.makeDeck();
@@ -9,6 +9,8 @@ function newGame(gameNumber) {
     }
     return game;
 }
+const GameEngine = {
+    newGame
+};
 
-
-export default GameEngine;
+module.exports=GameEngine;

@@ -35,7 +35,7 @@
     "check:src": " npm run test",
     "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack src/index.js ",
     "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack src/index.js ",
-    "buildCross": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
+    "buildCross": "npm run build:umd && npm run build:umd:min",
     "prepublish": "npm run clean && npm run check:src && npm run build"
   },
   "repository": {

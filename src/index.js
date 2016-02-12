@@ -1,4 +1,3 @@
-import GameEngine from "./game-engine";
+const GameEngine = require('./game-engine');
 
-
-export default GameEngine;
+module.exports = GameEngine;
