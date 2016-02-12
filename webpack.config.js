@@ -10,7 +10,8 @@ module.exports = {
     devtool: process.env.WEBPACK_DEVTOOL || 'source-map',
     output: {
         library: "FreecellGameEngine",
-        libraryTarget: "umd"
+        libraryTarget: "umd",
+        filename:"dist/freecell-game-engine.js"
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
