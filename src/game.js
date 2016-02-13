@@ -4,8 +4,7 @@ const Notation = require('./notation');
 const Position = require('./position');
 
 function _createBoard(gameNumber) {
-    var deck = Deck.makeDeck();
-    deck = Deck.shuffle(deck, gameNumber);
+    var deck = Deck.makeDeck(gameNumber);
     var board = [[], [], [], [], [], [], [], []];
     for (var i = 0; i < deck.length; i++) {
         board[i % 8].push(deck[i]);

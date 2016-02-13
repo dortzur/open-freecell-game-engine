@@ -9,20 +9,24 @@ for (let i = 0; i < 13; i++) {
         _deckProto.push(notation.cardRank[i] + notation.suitRank[j]);
     }
 }
-var Deck = {
-    makeDeck(){
-        return _deckProto.concat([]);
-    },
-    shuffle(deck, gameNumber){
-        var newDeck = deck.concat([]);
-        var rand = srand(gameNumber);
-        for (var i = newDeck.length - 1; i > 0; i--) {
-            var r = rand() % (i + 1);
-            var card = newDeck[r];
-            newDeck[r] = newDeck[i];
-            newDeck[i] = card;
-        }
-        return newDeck.reverse();
+function _shuffle(gameNumber) {
+    var deck = _deckProto.concat([]);
+    var rand = srand(gameNumber);
+    for (var i = deck.length - 1; i > 0; i--) {
+        var r = rand() % (i + 1);
+        var card = deck[r];
+        deck[r] = deck[i];
+        deck[i] = card;
     }
+    return deck.reverse();
+}
+var Deck = {
+    makeDeck(gameNumber){
+        if (!gameNumber) {
+            return _deckProto.concat([]);
+        }
+        return _shuffle(gameNumber);
+    }
+
 };
 module.exports = Deck;
