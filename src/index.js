@@ -1,7 +1,7 @@
 const srand = require("./srand");
 const Game = require("./game");
-const Deck = require("./Deck");
-const Notation = require("./Notation");
+const Deck = require("./deck");
+const Notation = require("./notation");
 
 const Utils = {
     srand
