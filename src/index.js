@@ -1,3 +1,15 @@
-const GameEngine = require('./game-engine');
+import Game from "./game";
+import Deck from "./deck";
+import Notation from "./notation";
+import srand from "./srand";
 
-module.exports = GameEngine;
+const Utils = {
+    srand
+};
+
+export {
+    Game,
+    Deck,
+    Notation,
+    Utils
+}

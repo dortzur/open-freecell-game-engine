@@ -9,7 +9,7 @@ module.exports = {
     output: {
         library: "FreecellGameEngine",
         libraryTarget: "umd",
-        filename:"dist/freecell-game-engine.js"
+        filename:"dist/freecell-game.js"
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
