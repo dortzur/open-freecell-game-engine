@@ -26,7 +26,7 @@ function _findCardInCells(cellArray, cardId) {
                     position.cellSize = cellArray[cellIndex].length;
                 } else {
                     position.cell = Notation.homeCellRank[cellIndex];
-                    position.cellSize = 0
+                    position.cellSize = 1
                 }
                 position.card = cellArray[cellIndex][cardIndex];
                 position.index = cardIndex;
@@ -44,7 +44,7 @@ function _findCardInCells(cellArray, cardId) {
         if (cellIndex > -1) {
             position.cell = Notation.freeCellRank(cellIndex);
             position.index = 0;
-            position.cellSize = 0;
+            position.cellSize = 1;
             position.card = cellArray[cellIndex];
             return position;
         }

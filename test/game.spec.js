@@ -19,13 +19,14 @@ describe('Game', () => {
         expect(position.index).to.eq(0);
         expect(position.card.id).to.eq("JD");
         expect(position.cellSize).to.eq(7);
+        expect(position.stackSize).to.eq(7);
 
         position = Game.findCard(game, "TC");
         expect(position.cell).to.eq("CO8");
         expect(position.index).to.eq(5);
         expect(position.card.id).to.eq("TC");
         expect(position.cellSize).to.eq(6);
-
+        expect(position.stackSize).to.eq(1);
     });
 
     it('counts free cells', () => {
