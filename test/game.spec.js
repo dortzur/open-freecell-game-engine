@@ -23,5 +23,10 @@ describe('Game', () => {
         expect(position.index).to.eq(5);
     });
 
+    it('counts free cells', () => {
+        const game = Game.newGame(1);
+        var count = Game.freeCellCount(game);
+        expect(count).to.eq(4);
+    })
 
 });

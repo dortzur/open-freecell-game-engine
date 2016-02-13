@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const Deck = require('../src/deck');
-describe('deck', () => {
+describe('Deck', () => {
     it('creates a new deck', () => {
         const deck = Deck.makeDeck();
         expect(deck[0].id).to.eq("AC");

@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const Card = require('../src/card');
-describe('card', () => {
+describe('Card', () => {
     it('creates a new card from notation', () => {
         var card = Card.makeCard("JD");
         expect(card.color).to.eq("RED");

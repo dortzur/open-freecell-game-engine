@@ -3,14 +3,7 @@ const Deck = require("./deck");
 const Notation = require('./notation');
 const Position = require('./position');
 
-function newGame(gameNumber) {
-    return {
-        moveHistory: [],
-        homeCells: [[], [], [], []],
-        board: _createBoard(gameNumber),
-        freeCells: [{}, {}, {}, {}]
-    };
-}
+
 
 function _createBoard(gameNumber) {
     var deck = Deck.makeDeck(gameNumber);
@@ -54,6 +47,20 @@ function _findCardInCells(cellArray, cardId) {
     }
 
 }
+
+function newGame(gameNumber) {
+    return {
+        moveHistory: [],
+        homeCells: [[], [], [], []],
+        board: _createBoard(gameNumber),
+        freeCells: [{}, {}, {}, {}]
+    };
+}
+function freeCellCount(game) {
+    return game.freeCells.filter((card)=> {
+        return !card.id;
+    }).length;
+}
 function findCard(game, cardId) {
 
     var position = _findCardInCells(game.freeCells, cardId);
@@ -75,7 +82,8 @@ function findCard(game, cardId) {
 
 const Game = {
     newGame,
-    findCard
+    findCard,
+    freeCellCount
 };
 
 module.exports = Game;
