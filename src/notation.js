@@ -1,5 +1,4 @@
-
-exports.notation = {
+exports.cardNotation = {
     2: "2",
     3: "3",
     4: "4",
@@ -14,7 +13,24 @@ exports.notation = {
     king: "K",
     ace: "A"
 };
-
+exports.cellNotation = {
+    column1: "C1",
+    column2: "C2",
+    column3: "C3",
+    column4: "C4",
+    column5: "C5",
+    column6: "C6",
+    column7: "C7",
+    column8: "C8",
+    home1: "H1",
+    home2: "H2",
+    home3: "H3",
+    home4: "H4",
+    freeCell1: "F1",
+    freeCell2: "F2",
+    freeCell3: "F3",
+    freeCell4: "F4"
+};
 exports.suitNotation = {
     clubs: "C",
     diamonds: "D",
