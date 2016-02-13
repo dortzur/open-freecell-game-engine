@@ -13,9 +13,9 @@ exports.cardNotation = {
     king: "K",
     ace: "A"
 };
-exports.columnRank = ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8"];
-exports.homeCellRank = ["H1", "H2", "H3", "H4"];
-exports.freeCellRank = ["F1", "F2", "F3", "F4"];
+exports.columnRank = ["CO1", "CO2", "CO3", "CO4", "CO5", "CO6", "CO7", "CO8"];
+exports.homeCellRank = ["HM1", "HM2", "HM3", "HM4"];
+exports.freeCellRank = ["FC1", "FC2", "FC3", "FC4"];
 
 exports.cellNotation = {
     column1: "C1",

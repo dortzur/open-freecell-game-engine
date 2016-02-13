@@ -2,16 +2,16 @@
 const notation = require("./notation");
 var srand = require("./srand");
 
-const _initialDeck = [];
+const _deckProto = [];
 
 for (let i = 0; i < 13; i++) {
     for (let j = 0; j < 4; j++) {
-        _initialDeck.push(notation.cardRank[i] + notation.suitRank[j]);
+        _deckProto.push(notation.cardRank[i] + notation.suitRank[j]);
     }
 }
 var Deck = {
     makeDeck(){
-        return _initialDeck.concat([]);
+        return _deckProto.concat([]);
     },
     shuffle(deck, gameNumber){
         var newDeck = deck.concat([]);

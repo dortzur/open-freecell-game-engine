@@ -1,6 +1,9 @@
+'use strict';
 const Deck = require("./deck");
 const Notation = require('./notation');
-function createBoard(gameNumber) {
+const Position = require('./position');
+
+function _createBoard(gameNumber) {
     var deck = Deck.makeDeck();
     deck = Deck.shuffle(deck, gameNumber);
     var board = [[], [], [], [], [], [], [], []];
@@ -9,32 +12,59 @@ function createBoard(gameNumber) {
     }
     return board;
 }
-function findCard(card, game) {
-    if (game.freeCells.include(card)) {
-        return Notation.freeCellRank(game.freeCells.indexOf(card));
-    }
-    var column = game.board.reduce(function (prev, curr, index) {
-        if (curr.include(card)) {
-            return Notation.columnRank(curr.indexOf(card));
-        } else {
-            return prev;
-        }
-    }, "");
-    if (column) {
-        return column;
-    }
 
+function _findFreeCellCard(game, card) {
+    var index = game.freeCells.indexOf(card);
+    if (index > -1) {
+        return Position.makePosition(Notation.freeCellRank[index]);
+    }
+    return null;
+}
+function _findBoardCard(game, card) {
+    var column = game.board.filter((column) => {
+        return column.indexOf(card) > -1;
+    })[0];
+    if (column) {
+        let cell = Notation.columnRank[game.board.indexOf(column)];
+        let cardIndex = column.indexOf(card);
+        return Position.makePosition(cell, cardIndex);
+    }
+    return null;
+}
+function _findHomeCellCard(game, card) {
+    var homeCell = game.homeCells.filter((homeCell) => {
+        return homeCell.indexOf(card) > -1;
+    })[0];
+    if (homeCell) {
+        let cell = Notation.homeCellRank[game.homeCells.indexOf(homeCell)];
+        let cardIndex = homeCell.indexOf(card);
+        return Position.makePosition(cell, cardIndex);
+    }
+    return null;
+}
+
+function findCard(game, card) {
+    var position = _findFreeCellCard(game, card);
+    if (position) {
+        return position;
+    }
+    position = _findBoardCard(game, card);
+    if (position) {
+        return position;
+    }
+    return _findHomeCellCard(game, card);
 }
 function newGame(gameNumber) {
     return {
         homeCells: [[], [], [], []],
-        board: createBoard(gameNumber),
+        board: _createBoard(gameNumber),
         freeCells: ["", "", "", ""]
     };
 }
 
 const Game = {
-    newGame
+    newGame,
+    findCard
 };
 
 module.exports = Game;
