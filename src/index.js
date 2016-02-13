@@ -1,15 +1,15 @@
-import Game from "./game";
-import Deck from "./deck";
-import Notation from "./notation";
-import srand from "./srand";
+const srand = require("./srand");
+const Game = require("./game");
+const Deck = require("./Deck");
+const Notation = require("./Notation");
 
 const Utils = {
     srand
 };
 
-export {
+module.exports = {
     Game,
     Deck,
     Notation,
     Utils
-}
+};

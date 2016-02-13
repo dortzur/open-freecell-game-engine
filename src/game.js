@@ -1,5 +1,4 @@
-
-var Deck = require("./deck");
+const Deck = require("./deck");
 function newGame(gameNumber) {
     var deck = Deck.makeDeck();
     deck = Deck.shuffle(deck, gameNumber);
@@ -9,8 +8,9 @@ function newGame(gameNumber) {
     }
     return game;
 }
-const GameEngine = {
+
+const Game = {
     newGame
 };
 
-module.exports=GameEngine;
+module.exports = Game;

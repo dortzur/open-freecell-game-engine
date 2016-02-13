@@ -1,4 +1,4 @@
-export const notation = {
+exports.notation = {
     2: "2",
     3: "3",
     4: "4",
@@ -14,15 +14,15 @@ export const notation = {
     ace: "A"
 };
 
-export const suitNotation = {
+exports.suitNotation = {
     clubs: "C",
     diamonds: "D",
     hearts: "H",
     spades: "S"
 };
-export const suitRank = ["C", "D", "H", "S"];
+exports.suitRank = ["C", "D", "H", "S"];
 
-export const rank = [
+exports.rank = [
     "A"
     , "2"
     , "3"

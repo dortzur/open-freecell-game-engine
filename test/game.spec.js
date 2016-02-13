@@ -1,5 +1,5 @@
-import {expect} from "chai";
-import {Game} from "../src";
+const expect = require('chai').expect;
+const Game = require('../src').Game;
 describe('Game', () => {
     it('Creates a new game', () => {
         var game = Game.newGame(1);
