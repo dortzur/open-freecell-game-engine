@@ -4,7 +4,6 @@ const Notation = require('./notation');
 const Position = require('./position');
 
 
-
 function _createBoard(gameNumber) {
     var deck = Deck.makeDeck(gameNumber);
     var board = [[], [], [], [], [], [], [], []];
@@ -24,9 +23,12 @@ function _findCardInCells(cellArray, cardId) {
             if (cardIndex > -1) {
                 if (cellArray.length == 8) {
                     position.cell = Notation.columnRank[cellIndex];
+                    position.cellSize = cellArray[cellIndex].length;
                 } else {
                     position.cell = Notation.homeCellRank[cellIndex];
+                    position.cellSize = 0
                 }
+                position.card = cellArray[cellIndex][cardIndex];
                 position.index = cardIndex;
                 return true;
             }
@@ -39,9 +41,11 @@ function _findCardInCells(cellArray, cardId) {
         const cellIndex = cellArray.findIndex(function (card) {
             return card.id == cardId;
         });
-        if(cellIndex>-1) {
+        if (cellIndex > -1) {
             position.cell = Notation.freeCellRank(cellIndex);
             position.index = 0;
+            position.cellSize = 0;
+            position.card = cellArray[cellIndex];
             return position;
         }
     }
@@ -78,7 +82,6 @@ function findCard(game, cardId) {
     }
 
 }
-
 
 const Game = {
     newGame,
