@@ -3,14 +3,14 @@ const Game = require('../src').Game;
 describe('Game', () => {
     it('Creates game #1', () => {
         var game = Game.newGame(1);
-        expect(game.board[0][0]).to.eq("JD");
-        expect(game.board[7][5]).to.eq("TC");
+        expect(game.board[0][0].id).to.eq("JD");
+        expect(game.board[7][5].id).to.eq("TC");
 
     });
     it('Creates game #617', () => {
         var game = Game.newGame(617);
-        expect(game.board[0][0]).to.eq("7D");
-        expect(game.board[7][5]).to.eq("QH");
+        expect(game.board[0][0].id).to.eq("7D");
+        expect(game.board[7][5].id).to.eq("QH");
     });
     it("finds cards on board", () => {
         var game = Game.newGame(1);

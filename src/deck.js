@@ -1,12 +1,14 @@
 'use strict';
 const notation = require("./notation");
-var srand = require("./srand");
+const srand = require("./srand");
+const Card = require("./card");
 
 const _deckProto = [];
 
 for (let i = 0; i < 13; i++) {
     for (let j = 0; j < 4; j++) {
-        _deckProto.push(notation.cardRank[i] + notation.suitRank[j]);
+        const card = Card.makeCard(notation.cardRank[i] + notation.suitRank[j]);
+        _deckProto.push(card);
     }
 }
 function _shuffle(gameNumber) {
