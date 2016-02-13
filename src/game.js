@@ -1,12 +1,20 @@
 const Deck = require("./deck");
-function newGame(gameNumber) {
+
+function createBoard(gameNumber) {
     var deck = Deck.makeDeck();
     deck = Deck.shuffle(deck, gameNumber);
-    var game = [[], [], [], [], [], [], [], []];
+    var board = [[], [], [], [], [], [], [], []];
     for (var i = 0; i < deck.length; i++) {
-        game[i % 8].push(deck[i]);
+        board[i % 8].push(deck[i]);
     }
-    return game;
+    return board;
+}
+function newGame(gameNumber) {
+    return {
+        homeCells: [[], [], [], []],
+        board: createBoard(gameNumber),
+        freeCells: ["", "", "", ""]
+    };
 }
 
 const Game = {
