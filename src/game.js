@@ -55,6 +55,7 @@ function findCard(game, card) {
 }
 function newGame(gameNumber) {
     return {
+        moveHistory: [],
         homeCells: [[], [], [], []],
         board: _createBoard(gameNumber),
         freeCells: ["", "", "", ""]
