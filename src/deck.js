@@ -6,7 +6,7 @@ const _initialDeck = [];
 
 for (let i = 0; i < 13; i++) {
     for (let j = 0; j < 4; j++) {
-        _initialDeck.push(notation.rank[i] + notation.suitRank[j]);
+        _initialDeck.push(notation.cardRank[i] + notation.suitRank[j]);
     }
 }
 var Deck = {

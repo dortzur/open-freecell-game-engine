@@ -13,6 +13,10 @@ exports.cardNotation = {
     king: "K",
     ace: "A"
 };
+exports.columnRank = ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8"];
+exports.homeCellRank = ["H1", "H2", "H3", "H4"];
+exports.freeCellRank = ["F1", "F2", "F3", "F4"];
+
 exports.cellNotation = {
     column1: "C1",
     column2: "C2",
@@ -39,7 +43,7 @@ exports.suitNotation = {
 };
 exports.suitRank = ["C", "D", "H", "S"];
 
-exports.rank = [
+exports.cardRank = [
     "A"
     , "2"
     , "3"
