@@ -51,7 +51,29 @@ function _findCardInCells(cellArray, cardId) {
     }
 
 }
-
+function _getCellType(cellId) {
+    return cellId.substring(0, 2);
+}
+function getTopCard(game, cellId) {
+    const cellType = _getCellType(cellId);
+    var card;
+    switch (cellType) {
+        case Notation.notationMap.freeCell:
+            card = game.freeCells[Notation.freeCellRank[cellId]];
+            break;
+        case Notation.notationMap.column:
+            let cell = game.board[Notation.colorRank[cellId]];
+            card = cell[cell.length - 1];
+            break;
+        case Notation.notationMap.homeCell:
+            cell = game.homeCells[Notation.homeCellRank[cellId]];
+            card = cell[cell.length - 1];
+    }
+    if (card && card.id) {
+        return card;
+    }
+    return null;
+}
 function newGame(gameNumber) {
     return {
         moveHistory: [],
