@@ -2,6 +2,7 @@
 const Game = require("./index").Game;
 const Position = require("./index").Position;
 const Notation = require('./index').Notation;
+const CellActions = require('./cellActions');
 
 
 function _findCardInCells(cellArray, cardId) {
@@ -46,6 +47,8 @@ function _findCardInCells(cellArray, cardId) {
 function _getCellType(cellId) {
     return cellId.substring(0, 2);
 }
+
+
 function getTopCard(game, cellId) {
     const cellType = _getCellType(cellId);
     var card;
@@ -67,21 +70,31 @@ function getTopCard(game, cellId) {
     }
     return null;
 }
-function isEmptyCell(cell) {
-    return cell.length == 0;
+
+function getCard(cells, cardId) {
+    return Object.keys(cells).reduce(function (result, cellId) {
+        //card already found
+        if (result) {
+            return result
+        }
+        return CellActions.getCard(cells[cellId], cardId);
+    }, undefined);
 }
+
 function emptyCellCount(cells) {
-    return Object.keys(cells).reduce(function (prev, curr) {
-        const isEmpty = isEmptyCell(cells[curr]);
+    return Object.keys(cells).reduce(function (prev, currCell) {
+        const isEmpty = CellActions.isEmpty(cells[currCell]);
         if (isEmpty) {
             return ++prev
         }
         return prev;
     }, 0)
 }
-function movableStackSize(freeCells, columns) {
-    return (1 + emptyCellCount(freeCells)) + Math.pow(2, emptyCellCount(columns));
+function calcAvailableMoves(freeCells, columns) {
+    return (1 + emptyCellCount(freeCells)) * Math.pow(2, emptyCellCount(columns));
 }
+
+
 function findCard(game, cardId) {
 
     var position = _findCardInCells(game.freeCells, cardId);
@@ -117,7 +130,8 @@ function attemptMove(game, cardId, targetCell) {
 }
 
 const Actions = {
-    movableStackSize,
-    emptyCellCount
+    calcAvailableMoves,
+    emptyCellCount,
+    getCard,
 };
 module.exports = Actions;
