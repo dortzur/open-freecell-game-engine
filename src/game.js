@@ -76,12 +76,7 @@ function getTopCard(game, cellId) {
     return null;
 }
 function newGame(gameNumber) {
-    return {
-        moveHistory: [],
-        homeCells: [[], [], [], []],
-        board: _createBoard(gameNumber),
-        freeCells: [{}, {}, {}, {}]
-    };
+
 }
 function freeCellCount(game) {
     return game.freeCells.filter((card)=> {
@@ -106,10 +101,16 @@ function findCard(game, cardId) {
 
 }
 
-const Game = {
-    newGame,
-    findCard,
-    freeCellCount
-};
+function Game(gameNumber) {
+    return {
+        moveHistory: [],
+        homeCells: [[], [], [], []],
+        board: _createBoard(gameNumber),
+        freeCells: [{}, {}, {}, {}]
+    };
+}
+Game.findCard = findCard;
+Game.freeCellCount = freeCellCount;
+
 
 module.exports = Game;

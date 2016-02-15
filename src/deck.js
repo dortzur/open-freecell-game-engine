@@ -27,13 +27,10 @@ function shuffle(gameNumber) {
 
 
 function Deck(gameNumber) {
-
-    if(!gameNumber) {
+    if (!gameNumber) {
         return createDefaultDeck();
     }
     return shuffle(gameNumber);
-
-
 }
 
 
