@@ -4,11 +4,13 @@ const Notation = require('./notation');
 const Position = require('./position');
 
 
-function _createBoard(gameNumber) {
+function createBoard(gameNumber) {
     var deck = Deck(gameNumber);
-    var board = [[], [], [], [], [], [], [], []];
+    var board = {CO1: [], CO2: [], CO3: [], CO4: [], CO5: [], CO6: [], CO7: [], CO8: []};
+    const boardKeys = Object.keys(board);
+
     for (var i = 0; i < deck.length; i++) {
-        board[i % 8].push(deck[i]);
+        board[boardKeys[i % 8]].push(deck[i]);
     }
     return board;
 }
@@ -75,14 +77,19 @@ function getTopCard(game, cellId) {
     }
     return null;
 }
-function newGame(gameNumber) {
+function isEmptyCell(cell) {
+    return cell.length == 0;
+}
+function emptyCellCount(cells) {
+    return Object.keys(cells).reduce(function (prev, curr) {
+        const isEmpty = isEmptyCell(cells[curr]);
+        if (isEmpty) {
+            return prev++
+        }
+        return prev;
+    }, 0)
+}
 
-}
-function freeCellCount(game) {
-    return game.freeCells.filter((card)=> {
-        return !card.id;
-    }).length;
-}
 function findCard(game, cardId) {
 
     var position = _findCardInCells(game.freeCells, cardId);
@@ -102,15 +109,17 @@ function findCard(game, cardId) {
 }
 
 function Game(gameNumber) {
+
     return {
         moveHistory: [],
-        homeCells: [[], [], [], []],
-        board: _createBoard(gameNumber),
-        freeCells: [{}, {}, {}, {}]
+        homeCells: {HM1: [], HM2: [], HM3: [], HM4: []},
+        board: createBoard(gameNumber),
+        freeCells: {FC1: [], FC2: [], FC3: [], FC4: []}
     };
+
+
 }
 Game.findCard = findCard;
-Game.freeCellCount = freeCellCount;
-
+Game.countEmptyCells = emptyCellCount;
 
 module.exports = Game;
