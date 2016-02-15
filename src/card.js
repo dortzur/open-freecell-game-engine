@@ -1,24 +1,31 @@
 "use strict";
 const Notation = require("./notation");
 
-class _Card {
-    constructor(cardNotation) {
-        this.notation = this.id = cardNotation;
-        this.value = this.id[0];
-        this.suit = this.id[1];
-        this.rank = Notation.cardRank.indexOf(this.value);
-        if (this.suit == "D" || this.suit == "H") {
-            this.color = Notation.notationMap.red;
-        } else {
-            this.color = Notation.notationMap.black;
-        }
-        this.colorRank = Notation.colorRank.indexOf(this.color);
+function Card(cardNotation) {
+    const notation = cardNotation;
+    const id = cardNotation;
+    const value = id[0];
+    const suit = id[1];
+    const rank = Notation.cardRank.indexOf(value);
+    let color;
+
+    if (suit == Notation.suitMap.diamonds || suit == Notation.suitMap.hearts) {
+        color = Notation.notationMap.red;
+    } else {
+        color = Notation.notationMap.black;
+    }
+    const colorRank = Notation.colorRank.indexOf(color);
+
+    return {
+        notation,
+        id,
+        value,
+        suit,
+        rank,
+        color,
+        colorRank
     }
 }
 
-const Card = {
-    makeCard(cardNotation){
-        return new _Card(cardNotation);
-    }
-};
+
 module.exports = Card;

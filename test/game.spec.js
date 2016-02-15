@@ -5,7 +5,6 @@ describe('Game', () => {
         var game = Game.newGame(1);
         expect(game.board[0][0].id).to.eq("JD");
         expect(game.board[7][5].id).to.eq("TC");
-
     });
     it('Creates game #617', () => {
         var game = Game.newGame(617);

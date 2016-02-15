@@ -3,16 +3,18 @@ const notation = require("./notation");
 const srand = require("./srand");
 const Card = require("./card");
 
-const _deckProto = [];
-
-for (let i = 0; i < 13; i++) {
-    for (let j = 0; j < 4; j++) {
-        const card = Card.makeCard(notation.cardRank[i] + notation.suitRank[j]);
-        _deckProto.push(card);
+function createDefaultDeck() {
+    const deck = [];
+    for (let i = 0; i < 13; i++) {
+        for (let j = 0; j < 4; j++) {
+            const card = Card(notation.cardRank[i] + notation.suitRank[j]);
+            deck.push(card);
+        }
     }
+    return deck;
 }
-function _shuffle(gameNumber) {
-    var deck = _deckProto.concat([]);
+function shuffle(gameNumber) {
+    var deck = createDefaultDeck();
     var rand = srand(gameNumber);
     for (var i = deck.length - 1; i > 0; i--) {
         var r = rand() % (i + 1);
@@ -22,13 +24,17 @@ function _shuffle(gameNumber) {
     }
     return deck.reverse();
 }
-var Deck = {
-    makeDeck(gameNumber){
-        if (!gameNumber) {
-            return _deckProto.concat([]);
-        }
-        return _shuffle(gameNumber);
-    }
 
-};
+
+function Deck(gameNumber) {
+
+    if(!gameNumber) {
+        return createDefaultDeck();
+    }
+    return shuffle(gameNumber);
+
+
+}
+
+
 module.exports = Deck;

@@ -5,7 +5,7 @@ const Position = require('./position');
 
 
 function _createBoard(gameNumber) {
-    var deck = Deck.makeDeck(gameNumber);
+    var deck = Deck(gameNumber);
     var board = [[], [], [], [], [], [], [], []];
     for (var i = 0; i < deck.length; i++) {
         board[i % 8].push(deck[i]);
@@ -14,7 +14,7 @@ function _createBoard(gameNumber) {
 }
 function _findCardInCells(cellArray, cardId) {
     //home cells or board
-    const position = Position.makePosition();
+    const position = Position();
     if (Array.isArray(cellArray[0])) {
         cellArray.findIndex(function (cells, cellIndex) {
             const cardIndex = cells.findIndex(function (card) {
@@ -57,12 +57,13 @@ function _getCellType(cellId) {
 function getTopCard(game, cellId) {
     const cellType = _getCellType(cellId);
     var card;
+    var cell;
     switch (cellType) {
         case Notation.notationMap.freeCell:
             card = game.freeCells[Notation.freeCellRank[cellId]];
             break;
         case Notation.notationMap.column:
-            let cell = game.board[Notation.colorRank[cellId]];
+            cell = game.board[Notation.colorRank[cellId]];
             card = cell[cell.length - 1];
             break;
         case Notation.notationMap.homeCell:

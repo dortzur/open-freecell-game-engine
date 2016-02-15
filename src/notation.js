@@ -5,7 +5,12 @@ exports.homeCellRank = ["HM1", "HM2", "HM3", "HM4"];
 exports.freeCellRank = ["FC1", "FC2", "FC3", "FC4"];
 
 exports.suitRank = ["C", "D", "H", "S"];
-
+exports.suitMap = {
+    clubs: "C",
+    diamonds: "D",
+    hearts: "H",
+    spades: "S"
+};
 exports.cardRank = [
     "A"
     , "2"
@@ -41,9 +46,9 @@ exports.notationMap = {
     diamonds: "D",
     hearts: "H",
     spades: "S",
-    column:"CO",
-    freeCell:"FC",
-    homeCell:"HM",
+    column: "CO",
+    freeCell: "FC",
+    homeCell: "HM",
     column1: "CO1",
     column2: "CO2",
     column3: "CO3",
