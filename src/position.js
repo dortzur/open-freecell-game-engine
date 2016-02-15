@@ -5,16 +5,16 @@ function Position(cell, index, cellSize, card) {
     cellSize = cellSize || 1;
     card = card || null;
 
-    return {
+    var position = {
         cell,
         index,
         cellSize,
         card,
         get stackSize() {
-            return this.cellSize - this.index;
+            return position.cellSize - position.index;
         }
-    }
-
+    };
+    return position;
 }
 
 
