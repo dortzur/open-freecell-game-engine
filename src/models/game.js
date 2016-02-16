@@ -14,14 +14,16 @@ function createColumns(gameNumber) {
 }
 
 function Game(gameNumber) {
-
-    return {
+    var game = {
         homeCells: {HM1: [], HM2: [], HM3: [], HM4: []},
         columns: createColumns(gameNumber),
-        freeCells: {FC1: [], FC2: [], FC3: [], FC4: []}
+        freeCells: {FC1: [], FC2: [], FC3: [], FC4: []},
+        get gameMap() {
+            return Object.assign({}, game.freeCells, game.columns, game.homeCells);
+        }
     };
 
-
+    return game;
 }
 
 module.exports = Game;

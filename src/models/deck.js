@@ -1,13 +1,14 @@
 'use strict';
-const notation = require("./notation");
-const srand = require("./srand");
+
+const Notation = require("./notation");
+const srand = require("../utils/srand");
 const Card = require("./card");
 
 function createDefaultDeck() {
     const deck = [];
     for (let i = 0; i < 13; i++) {
         for (let j = 0; j < 4; j++) {
-            const card = Card(notation.cardRank[i] + notation.suitRank[j]);
+            const card = Card(Notation.cardRank[i] + Notation.suitRank[j]);
             deck.push(card);
         }
     }

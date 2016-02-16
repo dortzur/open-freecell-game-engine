@@ -31,7 +31,7 @@ exports.colorRank = ["BLACK", "RED"];
 exports.illegalMoves = {
     inputError: {
         reason: "inputError",
-        description: "No moved card selected"
+        description: "Bad or missing input passed to game engine"
     },
     sameColor: {
         reason: "sameColor",
