@@ -1,10 +1,10 @@
-const srand = require("./srand");
-const Game = require("./game");
-const Deck = require("./deck");
-const Notation = require("./notation");
-const Card = require("./card");
-const Position = require("./position");
-const Actions = require("./actions");
+const srand = require("./models/srand");
+const Game = require("./models/game");
+const Deck = require("./models/deck");
+const Notation = require("./models/notation");
+const Card = require("./models/card");
+const Position = require("./models/position");
+const Actions = require("./actions/actions");
 const Utils = {
     srand
 };

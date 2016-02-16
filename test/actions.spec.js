@@ -1,7 +1,7 @@
 'use strict';
 const expect = require('chai').expect;
-const Actions = require('../src/actions');
-const Game = require('../src/game');
+const Actions = require('../src').Actions;
+const Game = require('../src').Game;
 describe('Actions', () => {
 
     it('counts empty cells', () => {

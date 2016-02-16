@@ -1,7 +1,7 @@
 'use strict';
-const Game = require("./index").Game;
-const Position = require("./index").Position;
-const Notation = require('./index').Notation;
+const Game = require("./../index").Game;
+const Position = require("./../index").Position;
+const Notation = require('./../index').Notation;
 const CellActions = require('./cellActions');
 
 

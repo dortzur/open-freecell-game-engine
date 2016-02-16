@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const Deck = require('../src/deck');
+const Deck = require('../src').Deck;
 describe('Deck', () => {
     it('creates a new deck', () => {
         const deck = Deck();
