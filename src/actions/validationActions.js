@@ -1,8 +1,8 @@
 "use strict";
-const GameEngine = require("../");
-const ValidationResult = GameEngine.ValidationResult;
-const Notation = GameEngine.Notation;
-const Actions = GameEngine.Actions;
+const ValidationResult = require("../models/validationResult");
+const Notation = require("../models/Notation");
+const Actions = require("./actions");
+const CellActions = require("./cellActions");
 
 
 /*
@@ -22,8 +22,32 @@ const Actions = GameEngine.Actions;
  *
  * */
 
+const isCard = (card)=>card.id && card.notation;
 
-function validateCardMove(movedCard, targetCard) {
+//top card; is target empty
+function validateCardToEmptyCell(card, cell) {
+    if (!isCard(card)) {
+        return ValidationResult(false, Notation.illegalMoves.inputError);
+
+    }
+    return CellActions.isEmpty(cell) ? ValidationResult(true) : ValidationResult(false, Notation.illegalMoves.cellNotEmpty)
+}
+//top card; same suit; ascending
+function validateCardToHomeCell(card, homeCell) {
+    if (!isCard(card)) {
+        return ValidationResult(false, Notation.illegalMoves.inputError);
+    }
+    if (card.rank == 0 && CellActions.isEmpty(homeCell)) {
+        return ValidationResult(true);
+    }
+    const homeCard = CellActions.getTopCard(homeCell);
+    if (card.suitRank == homeCard.suitRank && card.rank - homeCard.rank == 1) {
+        return ValidationResult(true);
+    }
+    return ValidationResult(false, Notation.illegalMoves.homeCellWrongRankOrSuit)
+}
+
+function validateCardToColumnCard(movedCard, targetCard) {
     if (!movedCard.id) {
         return ValidationResult(false, Notation.illegalMoves.inputError);
     }
@@ -36,6 +60,8 @@ function validateCardMove(movedCard, targetCard) {
     if (movedCard.rank - targetCard.rank != -1) {
         return ValidationResult(false, Notation.illegalMoves.wrongRank);
     }
+
+    return ValidationResult(true);
 }
 
 function validateCellMove(game, movedCellId, targetCellId) {
@@ -47,13 +73,13 @@ function validateCellMove(game, movedCellId, targetCellId) {
     }
 
 
-
     const availableMoves = Actions.calcAvailableMoves(game.freeCells, game.columns);
 
 
 }
 const ValidationsActions = {
-    validateCardMove
+    validateCardToEmptyCell,
+    validateCardToHomeCell
 };
 
 module.exports = ValidationsActions;

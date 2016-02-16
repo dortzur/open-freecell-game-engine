@@ -7,9 +7,13 @@ function getCard(cell, cardId) {
         return card.id == cardId
     })
 }
+function getTopCard(cell) {
+    return cell[cell.length - 1];
+}
 const CellActions = {
     isEmpty,
-    getCard
+    getCard,
+    getTopCard
 };
 
 module.exports = CellActions;

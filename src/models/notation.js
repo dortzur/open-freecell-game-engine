@@ -45,13 +45,13 @@ exports.illegalMoves = {
         reason: "notEnoughFreeCells",
         description: "There are not enough free cells to perform this move"
     },
-    freeCellNotEmpty: {
-        reason: "freeCellNotEmpty",
-        description: "Free Cells can only hold one card at a time"
+    cellNotEmpty: {
+        reason: "cellNotEmpty",
+        description: "Cell can only hold one card at a time"
     },
-    homeCellWrongOrder: {
-        reason: "homeCellWrongOrder",
-        description: "Cards must be put in home cells in the correct order"
+    homeCellWrongRankOrSuit: {
+        reason: "homeCellWrongRankOrSuit",
+        description: "Cards must be put in home cells in the correct order and in the same suit"
     }
 };
 
