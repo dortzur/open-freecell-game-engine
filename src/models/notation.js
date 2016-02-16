@@ -29,6 +29,10 @@ exports.cardRank = [
 exports.colorRank = ["BLACK", "RED"];
 
 exports.illegalMoves = {
+    inputError: {
+        reason: "inputError",
+        description: "No moved card selected"
+    },
     sameColor: {
         reason: "sameColor",
         description: "Cards must be in different colors"
