@@ -1,7 +1,10 @@
 "use strict";
-class MoveResult {
-    constructor(isLegal, illegalReason) {
-        this.isLegal = isLegal || false;
-        illegalReason = "";
+
+function MoveResult() {
+    return{
+        success:true,
+        illegalReason:{},
+        autoMovesAvailable:[]
     }
 }
+module.exports = MoveResult;

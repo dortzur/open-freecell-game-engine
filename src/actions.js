@@ -49,27 +49,6 @@ function _getCellType(cellId) {
 }
 
 
-function getTopCard(game, cellId) {
-    const cellType = _getCellType(cellId);
-    var card;
-    var cell;
-    switch (cellType) {
-        case Notation.notationMap.freeCell:
-            card = game.freeCells[Notation.freeCellRank[cellId]];
-            break;
-        case Notation.notationMap.column:
-            cell = game.columns[Notation.colorRank[cellId]];
-            card = cell[cell.length - 1];
-            break;
-        case Notation.notationMap.homeCell:
-            cell = game.homeCells[Notation.homeCellRank[cellId]];
-            card = cell[cell.length - 1];
-    }
-    if (card && card.id) {
-        return card;
-    }
-    return null;
-}
 
 function getCard(cells, cardId) {
     return Object.keys(cells).reduce(function (result, cellId) {
@@ -114,7 +93,7 @@ function findCard(game, cardId) {
 }
 
 
-function validateMove(game, cardId, targetCell) {
+function validateMove(game, MovedCellId, targetCellId) {
     const freeCellCount = Game.freeCellCount(game);
     const position = Game.findCard(game, cardId);
 

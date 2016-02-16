@@ -28,6 +28,29 @@ exports.cardRank = [
 ];
 exports.colorRank = ["BLACK", "RED"];
 
+exports.illegalMoves = {
+    sameColor: {
+        reason: "sameColor",
+        description: "Cards must be in different colors"
+    },
+    wrongRank: {
+        reason: "wrongRank",
+        description: "Moved card's value must be exactly one below target card"
+    },
+    notEnoughFreeCells: {
+        reason: "notEnoughFreeCells",
+        description: "There are not enough free cells to perform this move"
+    },
+    freeCellNotEmpty: {
+        reason: "freeCellNotEmpty",
+        description: "Free Cells can only hold one card at a time"
+    },
+    homeCellWrongOrder: {
+        reason: "homeCellWrongOrder",
+        description: "Cards must be put in home cells in the correct order"
+    }
+};
+
 exports.notationMap = {
     ace: "A",
     2: "2",
