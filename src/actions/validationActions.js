@@ -1,7 +1,7 @@
 "use strict";
 const ValidationResult = require("../models/validationResult");
 const Notation = require("../models/Notation");
-const Actions = require("./actions");
+const Actions = require("./gameActions");
 const CellActions = require("./cellActions");
 
 
@@ -22,6 +22,8 @@ const CellActions = require("./cellActions");
  *
  * */
 
+
+//CO to CO calc available stack should include whether target cell is empty
 const isCard = (card)=>card.id && card.notation;
 
 //top card; is target empty

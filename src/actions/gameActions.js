@@ -50,16 +50,6 @@ function _getCellType(cellId) {
 
 
 
-function getCard(cells, cardId) {
-    return Object.keys(cells).reduce(function (result, cellId) {
-        //card already found
-        if (result) {
-            return result
-        }
-        return CellActions.getCard(cells[cellId], cardId);
-    }, undefined);
-}
-
 function emptyCellCount(cells) {
     return Object.keys(cells).reduce(function (prev, currCell) {
         const isEmpty = CellActions.isEmpty(cells[currCell]);
@@ -69,8 +59,12 @@ function emptyCellCount(cells) {
         return prev;
     }, 0)
 }
-function calcAvailableMoves(freeCells, columns) {
-    return (1 + emptyCellCount(freeCells)) * Math.pow(2, emptyCellCount(columns));
+function calcAvailableMoves(freeCells, columns, isEmptyColumnTarget) {
+    var emptyColumnCount = emptyCellCount(columns);
+    if (isEmptyColumnTarget && emptyColumnCount > 0) {
+        emptyColumnCount--;
+    }
+    return (1 + emptyCellCount(freeCells)) * Math.pow(2, emptyColumnCount);
 }
 
 
@@ -91,14 +85,12 @@ function findCard(game, cardId) {
     }
 
 }
-
-
-function validateMove(game, MovedCellId, targetCellId) {
+function validateMove(game, movedCellId, targetCellId) {
     const freeCellCount = Game.freeCellCount(game);
     const position = Game.findCard(game, cardId);
 
 }
-function attemptMove(game, cardId, targetCell) {
+function attemptMove(game, movedCellId, targetCellId) {
     const move = validateMove(game, cardId, targetCell);
     if (move.isLegal) {
 
@@ -108,9 +100,8 @@ function attemptMove(game, cardId, targetCell) {
 
 }
 
-const Actions = {
+const GameActions = {
     calcAvailableMoves,
     emptyCellCount,
-    getCard,
 };
-module.exports = Actions;
+module.exports = GameActions;

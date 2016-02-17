@@ -2,7 +2,7 @@
 const expect = require('chai').expect;
 const Actions = require('../src').Actions;
 const Game = require('../src').Game;
-describe('Actions', () => {
+describe('GameActions', () => {
 
     it('counts empty cells', () => {
         const game = Game(1);
@@ -19,15 +19,7 @@ describe('Actions', () => {
         expect(moves).to.eq(5);
 
     });
-    it("get card in cells", function () {
-        const game = Game(1);
-        const noCard = Actions.getCard(game.freeCells, "JD");
-        const card = Actions.getCard(game.columns, "JD");
-        const card2 = Actions.getCard(game.columns, "TC");
-        expect(noCard).to.eq(undefined);
-        expect(card.rank).to.eq(10);
-        expect(card2.rank).to.eq(9);
-    });
+
     //it("finds cards on columns", () => {
     //    var game = Game(1);
     //    var position = Game.findCard(game, "JD");
