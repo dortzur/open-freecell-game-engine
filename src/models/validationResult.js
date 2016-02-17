@@ -1,9 +1,9 @@
 "use strict";
 
-function ValidationResult(successStatus,reason) {
+function ValidationResult(isSuccess,illegalMove) {
     return{
-        success:successStatus,
-        reason
+        success:isSuccess,
+        illegalMove:illegalMove
     }
 }
 module.exports = ValidationResult;

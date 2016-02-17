@@ -1,6 +1,6 @@
 "use strict";
 const ValidationResult = require("../models/validationResult");
-const Notation = require("../models/Notation");
+const Notation = require("../models/notation");
 const Actions = require("./gameActions");
 const CellActions = require("./cellActions");
 
@@ -39,12 +39,20 @@ function validateCardToEmptyCell(game, movedCellId, targetCellId) {
     return CellActions.isEmpty(targetCell) ? ValidationResult(true) : ValidationResult(false, Notation.illegalMoves.cellNotEmpty)
 }
 //top card; same suit; ascending
-function validateCardToHomeCell(card, homeCell) {
+function validateCardToHomeCell(game, movedCellId, targetCellId) {
+    var movedCell = game.gameMap[movedCellId];
+    var card = CellActions.getTopCard(movedCell);
+    var homeCell = game.gameMap[targetCellId];
+
     if (!isCard(card)) {
         return ValidationResult(false, Notation.illegalMoves.inputError);
     }
-    if (card.rank == 0 && CellActions.isEmpty(homeCell)) {
-        return ValidationResult(true);
+    if (CellActions.isEmpty(homeCell)) {
+        if (card.rank == 0) {
+            return ValidationResult(true);
+        } else {
+            return ValidationResult(false, Notation.illegalMoves.homeCellWrongRankOrSuit)
+        }
     }
     const homeCard = CellActions.getTopCard(homeCell);
     if (card.suitRank == homeCard.suitRank && card.rank - homeCard.rank == 1) {
