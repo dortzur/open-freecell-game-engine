@@ -16,7 +16,8 @@ function getCellType(cellId) {
 const CellActions = {
     isEmpty,
     getCard,
-    getTopCard
+    getTopCard,
+    getCellType
 };
 
 module.exports = CellActions;

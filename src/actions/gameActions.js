@@ -1,8 +1,11 @@
 'use strict';
-const Game = require("./../index").Game;
+
 const Position = require("./../index").Position;
-const Notation = require('./../index').Notation;
+const Game = require("../models/game");
+const Notation = require('../models/notation');
 const CellActions = require('./cellActions');
+const ValidationActions = require('./validationActions');
+const ValidationMap = require('../models/validationMap');
 
 
 function _findCardInCells(cellArray, cardId) {
@@ -49,7 +52,6 @@ function _getCellType(cellId) {
 }
 
 
-
 function emptyCellCount(cells) {
     return Object.keys(cells).reduce(function (prev, currCell) {
         const isEmpty = CellActions.isEmpty(cells[currCell]);
@@ -86,18 +88,20 @@ function findCard(game, cardId) {
 
 }
 function validateMove(game, movedCellId, targetCellId) {
-    const freeCellCount = Game.freeCellCount(game);
-    const position = Game.findCard(game, cardId);
+    const movedCellType = CellActions.getCellType(movedCellId);
+    const targetCellType = CellActions.getCellType(targetCellId);
+    const moveId = movedCellType + targetCellType;
+    return ValidationMap[moveId](game,movedCellId,targetCellId);
+}
+function performMove(game, movedCellId, targetCellId){
 
 }
 function attemptMove(game, movedCellId, targetCellId) {
-    const move = validateMove(game, cardId, targetCell);
-    if (move.isLegal) {
-
-    } else {
-        return move.illegal;
+    const validationResult = validateMove(game, movedCellId, targetCellId);
+    if(validationResult.success){
+        performMove(game, movedCellId, targetCellId);
     }
-
+    return validationResult;
 }
 
 const GameActions = {

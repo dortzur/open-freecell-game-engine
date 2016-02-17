@@ -16,16 +16,20 @@
  * */
 const VA = require("../actions/validationActions");
 
+function parameterMapper(validationFunction,game,movedCellId,targetCellId){
+
+    return validationFunction();
+}
 var ValidationMap = {
-    HMHM:VA.validateCardToEmptyCell,
+    HMHM:parameterMapper.bind(undefined,VA.validateCardToEmptyCell),
     FCHM:VA.validateCardToHomeCell,
     COHM:VA.validateCardToHomeCell,
     FCFC:VA.validateCardToEmptyCell,
     HMFC:VA.validateCardToEmptyCell,
-    COFC:VA.validateCardToEmptyCell,
-    COCO,
-    FCCO,
-    HMCO
+    COFC:parameterMapper.bind(undefined,VA.validateCardToEmptyCell),
+    COCO:{},
+    FCCO:{},
+    HMCO:{}
 };
 
 module.exports = ValidationMap;
