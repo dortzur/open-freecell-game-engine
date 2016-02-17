@@ -16,10 +16,6 @@
  * */
 const VA = require("../actions/validationActions");
 
-function parameterMapper(validationFunction,game,movedCellId,targetCellId){
-
-    return validationFunction();
-}
 var ValidationMap = {
     HMHM:VA.validateCardToEmptyCell,
     FCHM:VA.validateCardToHomeCell,
