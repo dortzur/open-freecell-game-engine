@@ -21,12 +21,12 @@ function parameterMapper(validationFunction,game,movedCellId,targetCellId){
     return validationFunction();
 }
 var ValidationMap = {
-    HMHM:parameterMapper.bind(undefined,VA.validateCardToEmptyCell),
+    HMHM:VA.validateCardToEmptyCell,
     FCHM:VA.validateCardToHomeCell,
     COHM:VA.validateCardToHomeCell,
     FCFC:VA.validateCardToEmptyCell,
     HMFC:VA.validateCardToEmptyCell,
-    COFC:parameterMapper.bind(undefined,VA.validateCardToEmptyCell),
+    COFC:VA.validateCardToEmptyCell,
     COCO:{},
     FCCO:{},
     HMCO:{}

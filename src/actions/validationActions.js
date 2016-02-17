@@ -24,15 +24,19 @@ const CellActions = require("./cellActions");
 
 
 //CO to CO calc available stack should include whether target cell is empty
-const isCard = (card)=>card.id && card.notation;
+const isCard = (card)=>card && card.id && card.notation;
 
 //top card; is target empty
-function validateCardToEmptyCell(card, cell) {
-    if (!isCard(card)) {
+function validateCardToEmptyCell(game, movedCellId, targetCellId) {
+    var movedCell = game.gameMap[movedCellId];
+    var topCard = CellActions.getTopCard(movedCell);
+    var targetCell = game.gameMap[targetCellId];
+
+    if (!isCard(topCard)) {
         return ValidationResult(false, Notation.illegalMoves.inputError);
 
     }
-    return CellActions.isEmpty(cell) ? ValidationResult(true) : ValidationResult(false, Notation.illegalMoves.cellNotEmpty)
+    return CellActions.isEmpty(targetCell) ? ValidationResult(true) : ValidationResult(false, Notation.illegalMoves.cellNotEmpty)
 }
 //top card; same suit; ascending
 function validateCardToHomeCell(card, homeCell) {

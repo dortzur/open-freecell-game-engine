@@ -99,7 +99,7 @@ function performMove(game, movedCellId, targetCellId){
 function attemptMove(game, movedCellId, targetCellId) {
     const validationResult = validateMove(game, movedCellId, targetCellId);
     if(validationResult.success){
-        performMove(game, movedCellId, targetCellId);
+        return performMove(game, movedCellId, targetCellId);
     }
     return validationResult;
 }
@@ -107,5 +107,6 @@ function attemptMove(game, movedCellId, targetCellId) {
 const GameActions = {
     calcAvailableMoves,
     emptyCellCount,
+    validateMove,
 };
 module.exports = GameActions;
