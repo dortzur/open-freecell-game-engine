@@ -13,6 +13,12 @@ describe('ValidationActions', () => {
         expect(result.game.freeCells.FC1[0].id).to.eq("6S");
         expect(result.game.freeCells.CO1[5].id).to.eq("6D");
         expect(result.game.freeCells.CO1[6]).to.eq(undefined);
+
+        game = result.game;
+
+        result=GameActions.attemptMove(game,"CO2","FC1");
+        expect(result.validationResult.success).to.eq(false);
+        expect(result.validationResult.illegalMove).to.eq(Notation.illegalMoves.cellNotEmpty);
     });
     it('validate COHM', () => {
         var game = Game(1);
