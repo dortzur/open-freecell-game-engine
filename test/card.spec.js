@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const Card = require('../src').Card;
+const Card = require('../src/models/card');
 describe('Card', () => {
     it('creates a new card from notation', () => {
         var card = Card("JD");

@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const srand = require('../src').Utils.srand;
+const srand = require('../src/utils/srand');
 describe('srand', () => {
     it('creates random numbers for specified seed. MSRand compliant', () => {
         var rand = srand(1);
