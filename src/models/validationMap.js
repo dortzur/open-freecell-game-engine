@@ -17,15 +17,17 @@
 const VA = require("../actions/validationActions");
 
 var ValidationMap = {
-    HMHM:VA.validateCardToEmptyCell,
-    FCHM:VA.validateCardToHomeCell,
-    COHM:VA.validateCardToHomeCell,
-    FCFC:VA.validateCardToEmptyCell,
-    HMFC:VA.validateCardToEmptyCell,
-    COFC:VA.validateCardToEmptyCell,
-    COCO:{},
-    FCCO:VA.validateCardToColumnCard,
-    HMCO:VA.validateCardToColumnCard
+    HMHM: VA.validateTopCardToEmptyCell,
+    FCHM: VA.validateTopCardToHomeCell,
+    COHM: VA.validateTopCardToHomeCell,
+
+    FCFC: VA.validateTopCardToEmptyCell,
+    HMFC: VA.validateTopCardToEmptyCell,
+    COFC: VA.validateTopCardToEmptyCell,
+
+    COCO: VA.validateColumnCellToColumnCell,
+    FCCO: VA.validateTopCardToColumnCard,
+    HMCO: VA.validateTopCardToColumnCard
 };
 
 module.exports = ValidationMap;
