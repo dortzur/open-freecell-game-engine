@@ -4,7 +4,7 @@ const Notation = require("./models/notation");
 const Card = require("./models/card");
 const Deck = require("./models/deck");
 const Game = require("./models/game");
-const Actions = require("./actions/gameActions");
+const GameActions = require("./actions/gameActions");
 const ValidationActions = require("./actions/validationActions");
 const ValidationResult = require("./models/validationResult");
 
@@ -13,7 +13,7 @@ const Utils = {
 };
 
 module.exports = {
-    Actions,
+    GameActions,
     ValidationActions,
     Card,
     Deck,

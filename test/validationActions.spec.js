@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const GameEngine = require('../src');
-const GameActions = GameEngine.Actions;
+const GameActions = GameEngine.GameActions;
 const ValidationActions = GameEngine.ValidationActions;
 const Notation = GameEngine.Notation;
 const Game = GameEngine.Game;
