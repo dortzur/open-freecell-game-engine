@@ -71,6 +71,7 @@ function validateTopCardToColumnCard(game, movedCellId, targetCellId) {
     return validateColumnCardToColumnCard(movedCard, targetCard);
 }
 
+//column card move;
 function validateColumnCardToColumnCard(movedCard, targetCard) {
     if (!movedCard.id) {
         return ValidationResult(false, illegalMoves.inputError);
@@ -84,6 +85,7 @@ function validateColumnCardToColumnCard(movedCard, targetCard) {
     return ValidationResult(true);
 }
 
+// calc max stack size; descending stack; column card move;
 function validateColumnCellToColumnCell(game, movedCellId, targetCellId) {
     var movedCell = game.gameMap[movedCellId];
     var targetCell = game.gameMap[targetCellId];

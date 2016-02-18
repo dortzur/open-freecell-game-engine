@@ -89,15 +89,17 @@ function getMoveId(movedCellId, targetCellId) {
     return movedCellType + targetCellType;
 }
 
-function performMove(game, movedCellId, targetCellId) {
+function performMove(game, movedCellId, targetCellId, approvedStackSize) {
     const _game = Object.assign({}, game);
     const movedCell = _game.gameMap[movedCellId];
     const targetCell = _game.gameMap[targetCellId];
     const moveId = getMoveId(movedCellId, targetCellId);
 
     if (moveId == "COCO") {
-
-    }else{
+        for (var i = 0; i < approvedStackSize; i++) {
+            targetCell.push(movedCell.pop());
+        }
+    } else {
         targetCell.push(movedCell.pop());
     }
     return _game;
@@ -105,8 +107,8 @@ function performMove(game, movedCellId, targetCellId) {
 
 function validateMove(game, movedCellId, targetCellId) {
     const moveId = getMoveId(movedCellId, targetCellId);
-    if(ValidationMap[moveId] == undefined) {
-        return ValidationResult(false,illegalMoves.inputError);
+    if (ValidationMap[moveId] == undefined) {
+        return ValidationResult(false, illegalMoves.inputError);
     }
     return ValidationMap[moveId](game, movedCellId, targetCellId);
 }
@@ -114,9 +116,9 @@ function validateMove(game, movedCellId, targetCellId) {
 function attemptMove(game, movedCellId, targetCellId) {
     const validationResult = validateMove(game, movedCellId, targetCellId);
     if (validationResult.success) {
-        game = performMove(game, movedCellId, targetCellId);
+        game = performMove(game, movedCellId, targetCellId, validationResult.approvedStackSize);
     }
-    return MoveResult(game,validationResult);
+    return MoveResult(game, validationResult);
 }
 
 const GameActions = {
