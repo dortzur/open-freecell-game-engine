@@ -63,7 +63,17 @@ describe('ValidationActions', () => {
         expect(result.game).to.eq(game);
     });
     it('validate HMHM', () => {
-
+        var game = Game(1);
+        game = GameActions.attemptMove(game, "CO6", "FC1").game;
+        game = GameActions.attemptMove(game, "CO6", "FC2").game;
+        game = GameActions.attemptMove(game, "CO6", "HM1").game;
+        var result = GameActions.attemptMove(game, "CO6", "HM2");
+        result = GameActions.attemptMove(result.game, "HM2", "HM1");
+        expect(result.validationResult.success).to.eq(false);
+        expect(result.validationResult.illegalMove).to.eq(illegalMoves.cellNotEmpty);
+        result = GameActions.attemptMove(game, "HM2", "HM3");
+        expect(result.validationResult.success).to.eq(true);
+        expect(game.homeCells.HM3[0].id).to.eq("AS")
     });
 
     it('validate FCCO', () => {
