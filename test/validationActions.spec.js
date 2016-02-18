@@ -85,11 +85,26 @@ describe('ValidationActions', () => {
         expect(result.validationResult.illegalMove).to.eq(illegalMoves.columnCellWrongColorOrRank);
         result = GameActions.attemptMove(game, "FC2", "CO8");
         expect(result.validationResult.success).to.eq(true);
-        expect(result.game.gameMap.CO8[game.gameMap.CO8.length - 1].id).to.eq("6S");
+        const CO8Top = game.gameMap.CO8.length - 1;
+        expect(result.game.gameMap.CO8[CO8Top].id).to.eq("6S");
         expect(result.game.gameMap.FC2[0]).to.eq(undefined);
 
     });
     it('validate HMCO', () => {
+        var game = Game(1);
+        game = GameActions.attemptMove(game, "CO6", "FC1").game;
+        game = GameActions.attemptMove(game, "CO6", "FC2").game;
+        game = GameActions.attemptMove(game, "CO6", "HM1").game;
+        var result = GameActions.attemptMove(game, "FC2", "HM1");
+        expect(result.validationResult.success).to.eq(true);
+        expect(result.game.homeCells.HM1[1].id).to.eq("2C");
+        game = GameActions.attemptMove(result.game, "CO3", "FC2").game;
+        game = GameActions.attemptMove(game, "CO3", "FC3").game;
+        game = GameActions.attemptMove(game, "FC1", "CO3").game;
+        result = GameActions.attemptMove(game, "HM1", "CO3");
+        expect(result.validationResult.success).to.eq(true);
+        expect(result.game.freeCells.CO3[result.game.freeCells.CO3.length - 1].id).to.eq("2C");
+        expect(result.game.homeCells.HM1[0].id).to.eq("AC");
 
     });
     it('validate COCO', () => {
