@@ -83,6 +83,10 @@ describe('ValidationActions', () => {
         var result = GameActions.attemptMove(game, "FC2", "CO3");
         expect(result.validationResult.success).to.eq(false);
         expect(result.validationResult.illegalMove).to.eq(illegalMoves.columnCellWrongColorOrRank);
+        result = GameActions.attemptMove(game, "FC2", "CO8");
+        expect(result.validationResult.success).to.eq(true);
+        expect(result.game.gameMap.CO8[game.gameMap.CO8.length - 1].id).to.eq("6S");
+        expect(result.game.gameMap.FC2[0]).to.eq(undefined);
 
     });
     it('validate HMCO', () => {
