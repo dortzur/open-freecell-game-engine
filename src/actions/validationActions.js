@@ -1,9 +1,9 @@
 "use strict";
 const ValidationResult = require("../models/validationResult");
 const Notation = require("../models/notation");
-const Actions = require("./gameActions");
+const GameActions = require("./gameActions");
 const CellActions = require("./cellActions");
-
+const illegalMoves = Notation.illegalMoves;
 
 /*
  * Validation move logic
@@ -39,10 +39,10 @@ function validateCardToEmptyCell(game, movedCellId, targetCellId) {
     var targetCell = game.gameMap[targetCellId];
 
     if (!isCard(topCard)) {
-        return ValidationResult(false, Notation.illegalMoves.inputError);
+        return ValidationResult(false, illegalMoves.inputError);
 
     }
-    return CellActions.isEmpty(targetCell) ? ValidationResult(true) : ValidationResult(false, Notation.illegalMoves.cellNotEmpty)
+    return CellActions.isEmpty(targetCell) ? ValidationResult(true) : ValidationResult(false, illegalMoves.cellNotEmpty)
 }
 //top card; same suit; ascending
 function validateCardToHomeCell(game, movedCellId, targetCellId) {
@@ -51,55 +51,44 @@ function validateCardToHomeCell(game, movedCellId, targetCellId) {
     var homeCell = game.gameMap[targetCellId];
 
     if (!isCard(card)) {
-        return ValidationResult(false, Notation.illegalMoves.inputError);
+        return ValidationResult(false, illegalMoves.inputError);
     }
     if (CellActions.isEmpty(homeCell)) {
         if (card.rank == 0) {
             return ValidationResult(true);
         } else {
-            return ValidationResult(false, Notation.illegalMoves.homeCellWrongRankOrSuit)
+            return ValidationResult(false, illegalMoves.homeCellWrongRankOrSuit)
         }
     }
     const homeCard = CellActions.getTopCard(homeCell);
     if (card.suitRank == homeCard.suitRank && card.rank - homeCard.rank == 1) {
         return ValidationResult(true);
     }
-    return ValidationResult(false, Notation.illegalMoves.homeCellWrongRankOrSuit)
+    return ValidationResult(false, illegalMoves.homeCellWrongRankOrSuit)
 }
 
-function validateCardToColumnCard(movedCard, targetCard) {
+function validateCardToColumnCard(game, movedCellId, targetCellId) {
+    var movedCell = game.gameMap[movedCellId];
+    var movedCard = CellActions.getTopCard(movedCell);
+    var targetCell = game.gameMap[targetCellId];
+    var targetCard = CellActions.getTopCard(targetCell);
+
     if (!movedCard.id) {
-        return ValidationResult(false, Notation.illegalMoves.inputError);
+        return ValidationResult(false, illegalMoves.inputError);
     }
     if (!targetCard.id) {
         return ValidationResult(true);
     }
-    if (movedCard.color == targetCard.color) {
-        return ValidationResult(false, Notation.illegalMoves.sameColor);
+    if (movedCard.color == targetCard.color || movedCard.rank - targetCard.rank != -1) {
+        return ValidationResult(false, illegalMoves.columnCellWrongColorOrRank);
     }
-    if (movedCard.rank - targetCard.rank != -1) {
-        return ValidationResult(false, Notation.illegalMoves.wrongRank);
-    }
-
     return ValidationResult(true);
 }
 
-function validateCellMove(game, movedCellId, targetCellId) {
-    const gameMap = game.gameMap;
-    const movedCell = gameMap[movedCellId];
-    const targetCell = gameMap[targetCellId];
-    if (movedCell === targetCell || movedCell === undefined || targetCell === undefined) {
-        return ValidationResult(false, Notation.illegalMoves.inputError);
-    }
-
-
-    const availableMoves = Actions.calcAvailableMoves(game.freeCells, game.columns);
-
-
-}
 const ValidationsActions = {
     validateCardToEmptyCell,
-    validateCardToHomeCell
+    validateCardToHomeCell,
+    validateCardToColumnCard
 };
 
 module.exports = ValidationsActions;

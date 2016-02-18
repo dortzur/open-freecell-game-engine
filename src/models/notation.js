@@ -33,13 +33,9 @@ exports.illegalMoves = {
         reason: "inputError",
         description: "Bad or missing input passed to game engine"
     },
-    sameColor: {
-        reason: "sameColor",
-        description: "Cards must be in different colors"
-    },
-    wrongRank: {
-        reason: "wrongRank",
-        description: "Moved card's value must be exactly one below target card"
+    columnCellWrongColorOrRank: {
+        reason: "columnCellWrongColorOrRank",
+        description: "Cards must be in different colors and in the correct order"
     },
     notEnoughFreeCells: {
         reason: "notEnoughFreeCells",

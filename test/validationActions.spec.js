@@ -77,6 +77,12 @@ describe('ValidationActions', () => {
     });
 
     it('validate FCCO', () => {
+        var game = Game(1);
+        game = GameActions.attemptMove(game, "CO8", "FC1").game;
+        game = GameActions.attemptMove(game, "CO1", "FC2").game;
+        var result = GameActions.attemptMove(game, "FC2", "CO3");
+        expect(result.validationResult.success).to.eq(false);
+        expect(result.validationResult.illegalMove).to.eq(illegalMoves.columnCellWrongColorOrRank);
 
     });
     it('validate HMCO', () => {

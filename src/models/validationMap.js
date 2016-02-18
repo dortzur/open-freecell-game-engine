@@ -24,8 +24,8 @@ var ValidationMap = {
     HMFC:VA.validateCardToEmptyCell,
     COFC:VA.validateCardToEmptyCell,
     COCO:{},
-    FCCO:VA.validateCardToColumnCell,
-    HMCO:VA.validateCardToColumnCell
+    FCCO:VA.validateCardToColumnCard,
+    HMCO:VA.validateCardToColumnCard
 };
 
 module.exports = ValidationMap;

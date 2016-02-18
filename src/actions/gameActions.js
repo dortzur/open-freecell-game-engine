@@ -1,8 +1,7 @@
 'use strict';
 
-const Position = require("./../index").Position;
-const Game = require("../models/game");
-const Notation = require('../models/notation');
+const illegalMoves = require("../models/notation").illegalMoves;
+const ValidationResult = require('../models/validationResult');
 const CellActions = require('./cellActions');
 const ValidationActions = require('./validationActions');
 const ValidationMap = require('../models/validationMap');
@@ -106,6 +105,9 @@ function performMove(game, movedCellId, targetCellId) {
 
 function validateMove(game, movedCellId, targetCellId) {
     const moveId = getMoveId(movedCellId, targetCellId);
+    if(ValidationMap[moveId] == undefined) {
+        return ValidationResult(false,illegalMoves.inputError);
+    }
     return ValidationMap[moveId](game, movedCellId, targetCellId);
 }
 
