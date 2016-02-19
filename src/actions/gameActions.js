@@ -138,26 +138,37 @@ function print(game) {
         return template;
     }
 
-    function printCells(cells) {
-        const keys = Object.keys(cells);
+    function printCells(cellMap) {
         let template = "";
-        keys.forEach((key,index)=> {
-            template += `${key}`;
-            if (index < keys.length - 1) {
-                template += "\t\t";
-            }
-        });
-        template += "\n";
 
-        keys.forEach((key, index)=> {
-            template += `${printCell(cells[key])}`;
+        Object.keys(cellMap).forEach((key, index,keys)=> {
+            template += `${printCell(cellMap[key])}`;
             if (index < keys.length - 1) {
                 template += "\t";
             }
         });
         return template;
     }
-    let template = printCells(game.freeCells);
+
+    function printHeaders(cellMap) {
+        var template = "";
+        Object.keys(cellMap).forEach((key, index,keys)=> {
+            template += ` ${key}`;
+            if (index < keys.length - 1) {
+                template += "\t";
+            }
+        });
+        return template;
+    }
+
+    let template = "";
+    template += printHeaders(game.freeCells);
+    template += " \t";
+    template += printHeaders(game.homeCells);
+    template += "\n";
+    template += printCells(game.freeCells);
+    template += "\t";
+    template += printCells(game.homeCells);
     return template;
 }
 const GameActions = {
