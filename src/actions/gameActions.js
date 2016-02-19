@@ -146,7 +146,7 @@ function print(game) {
                     rowTemplate += "\t";
                     emptyCount++;
                 }
-                if(index<cellCount-1) {
+                if (index < cellCount - 1) {
                     rowTemplate += "\t";
                 }
             });
@@ -165,9 +165,7 @@ function print(game) {
     template += " \t";
     template += printHeaders(game.homeCells);
     template += "\n";
-    template += printCells(game.freeCells);
-    template += "\t";
-    template += printCells(game.homeCells);
+    template += printCells(Object.assign({}, game.freeCells, game.homeCells));
     template += "\n";
     template += printHeaders(game.columns);
     template += "\n";
@@ -179,6 +177,6 @@ const GameActions = {
     emptyCellCount,
     validateMove,
     attemptMove,
-    toString: print
+    print
 };
 module.exports = GameActions;
