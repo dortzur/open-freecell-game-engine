@@ -120,11 +120,51 @@ function attemptMove(game, movedCellId, targetCellId) {
     }
     return MoveResult(game, validationResult);
 }
+function print(game) {
+    function printCell(cell) {
+        if (cell.length == 0) {
+            return "[Empty]";
+        }
+        if (cell.length == 1) {
+            return `[${cell[0].id}]`
+        }
+        var template = "[";
+        cell.forEach((card, index, cell)=> {
+            template += `${card.id}`;
+            if (index < cell.length - 1) {
+                template += "\n";
+            }
+        });
+        return template;
+    }
 
+    function printCells(cells) {
+        const keys = Object.keys(cells);
+        let template = "";
+        keys.forEach((key,index)=> {
+            template += `${key}`;
+            if (index < keys.length - 1) {
+                template += "\t\t";
+            }
+        });
+        template += "\n";
+
+        keys.forEach((key, index)=> {
+            template += `${printCell(cells[key])}`;
+            if (index < keys.length - 1) {
+                template += "\t";
+            }
+        });
+        return template;
+    }
+    let template = printCells(game.freeCells);
+    return template;
+}
 const GameActions = {
     calcAvailableMoves,
     emptyCellCount,
     validateMove,
     attemptMove,
+    toString: print
 };
 module.exports = GameActions;

@@ -108,6 +108,11 @@ describe('ValidationActions', () => {
 
     });
     it('validate COCO', () => {
-
+        var game = Game(1);
+        game = GameActions.attemptMove(game, "CO6", "FC1").game;
+        game = GameActions.attemptMove(game, "CO6", "FC2").game;
+        game = GameActions.attemptMove(game, "CO6", "HM1").game;
+        game = GameActions.attemptMove(game, "FC2", "HM1").game;
+        game = GameActions.attemptMove(game, "CO6", "HM2").game;
     })
 });

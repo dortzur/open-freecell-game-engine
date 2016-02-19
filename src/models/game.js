@@ -22,7 +22,6 @@ function Game(gameNumber) {
             return Object.assign(game.freeCells, game.columns, game.homeCells);
         }
     };
-
     return game;
 }
 
