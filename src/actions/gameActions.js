@@ -121,43 +121,41 @@ function attemptMove(game, movedCellId, targetCellId) {
     return MoveResult(game, validationResult);
 }
 function print(game) {
-    function printCell(cell) {
-        if (cell.length == 0) {
-            return "[Empty]";
-        }
-        if (cell.length == 1) {
-            return `[${cell[0].id}]`
-        }
-        var template = "[";
-        cell.forEach((card, index, cell)=> {
-            template += `${card.id}`;
-            if (index < cell.length - 1) {
-                template += "\n";
-            }
-        });
-        return template;
-    }
-
-    function printCells(cellMap) {
-        let template = "";
-
-        Object.keys(cellMap).forEach((key, index,keys)=> {
-            template += `${printCell(cellMap[key])}`;
-            if (index < keys.length - 1) {
-                template += "\t";
-            }
-        });
-        return template;
-    }
-
     function printHeaders(cellMap) {
         var template = "";
-        Object.keys(cellMap).forEach((key, index,keys)=> {
-            template += ` ${key}`;
+        Object.keys(cellMap).forEach((key, index, keys)=> {
+            template += `${key} `;
             if (index < keys.length - 1) {
                 template += "\t";
             }
         });
+        return template;
+    }
+
+    function printCells(cells) {
+        var emptyCount = 0;
+        var row = 0;
+        var template = "";
+        const cellCount = Object.keys(cells).length;
+        while (emptyCount < cellCount) {
+            var rowTemplate = "";
+            Object.keys(cells).forEach((key, index, keys)=> {
+                if (cells[key][row]) {
+                    rowTemplate += `[${cells[key][row].id}]`;
+                } else {
+                    emptyCount++;
+                }
+                if(index<cellCount-1) {
+                    rowTemplate += "\t";
+                }
+            });
+            row++;
+            if (emptyCount < cellCount) {
+                emptyCount = 0;
+                rowTemplate += "\n";
+                template += rowTemplate;
+            }
+        }
         return template;
     }
 
@@ -169,6 +167,10 @@ function print(game) {
     template += printCells(game.freeCells);
     template += "\t";
     template += printCells(game.homeCells);
+    template += "\n\n";
+    template += printHeaders(game.columns);
+    template += "\n";
+    template += printCells(game.columns);
     return template;
 }
 const GameActions = {
