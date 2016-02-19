@@ -9,5 +9,7 @@ describe('Miscellaneous tests', () => {
         console.log(GameActions.toString(game));
 
         game = GameActions.attemptMove(game, "CO3", "FC1").game;
+        console.log(GameActions.toString(game));
+
     })
 });

@@ -12,8 +12,8 @@ describe('ValidationActions', () => {
         expect(result.validationResult.success).to.eq(true);
         expect(result.game).to.not.eq(game);
         expect(result.game.freeCells.FC1[0].id).to.eq("6S");
-        expect(result.game.freeCells.CO1[5].id).to.eq("6D");
-        expect(result.game.freeCells.CO1[6]).to.eq(undefined);
+        expect(result.game.columns.CO1[5].id).to.eq("6D");
+        expect(result.game.columns.CO1[6]).to.eq(undefined);
         result = GameActions.attemptMove(result.game, "CO2", "FC1");
         expect(result.validationResult.success).to.eq(false);
         expect(result.validationResult.illegalMove).to.eq(illegalMoves.cellNotEmpty);
@@ -103,7 +103,7 @@ describe('ValidationActions', () => {
         game = GameActions.attemptMove(game, "FC1", "CO3").game;
         result = GameActions.attemptMove(game, "HM1", "CO3");
         expect(result.validationResult.success).to.eq(true);
-        expect(result.game.freeCells.CO3[result.game.freeCells.CO3.length - 1].id).to.eq("2C");
+        expect(result.game.columns.CO3[result.game.columns.CO3.length - 1].id).to.eq("2C");
         expect(result.game.homeCells.HM1[0].id).to.eq("AC");
 
     });

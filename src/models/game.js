@@ -19,7 +19,7 @@ function Game(gameNumber) {
         columns: createColumns(gameNumber),
         freeCells: {FC1: [], FC2: [], FC3: [], FC4: []},
         get gameMap() {
-            return Object.assign(game.freeCells, game.columns, game.homeCells);
+            return Object.assign({},game.freeCells, game.columns, game.homeCells);
         }
     };
     return game;

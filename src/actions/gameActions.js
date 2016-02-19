@@ -143,6 +143,7 @@ function print(game) {
                 if (cells[key][row]) {
                     rowTemplate += `[${cells[key][row].id}]`;
                 } else {
+                    rowTemplate += "\t";
                     emptyCount++;
                 }
                 if(index<cellCount-1) {
@@ -167,7 +168,7 @@ function print(game) {
     template += printCells(game.freeCells);
     template += "\t";
     template += printCells(game.homeCells);
-    template += "\n\n";
+    template += "\n";
     template += printHeaders(game.columns);
     template += "\n";
     template += printCells(game.columns);
