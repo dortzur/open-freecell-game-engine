@@ -7,9 +7,6 @@ const ValidationMap = require('../models/validationMap');
 const MoveResult = require('../models/moveResult');
 
 
-
-
-
 function getMoveId(movedCellId, targetCellId) {
     const movedCellType = CellActions.getCellType(movedCellId);
     const targetCellType = CellActions.getCellType(targetCellId);
@@ -22,9 +19,11 @@ function performMove(game, movedCellId, targetCellId, approvedStackSize) {
     const targetCell = _game.gameMap[targetCellId];
     const moveId = getMoveId(movedCellId, targetCellId);
 
-    if (moveId == "COCO") {
+    if (moveId == "COCO" && approvedStackSize > 1) {
+        var topStack = CellActions.getTopStack(movedCell, approvedStackSize);
         for (var i = 0; i < approvedStackSize; i++) {
-            targetCell.push(movedCell.pop());
+            targetCell.push(topStack.pop());
+            movedCell.pop();
         }
     } else {
         targetCell.push(movedCell.pop());

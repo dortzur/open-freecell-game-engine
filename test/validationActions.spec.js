@@ -124,5 +124,10 @@ describe('ValidationActions', () => {
         console.log(GameActions.print(game));
         expect(result.game.columns.CO6[0].id).to.eq("8C");
         expect(result.game.columns.CO6[1].id).to.eq("7H");
+
+        result = GameActions.attemptMove(game, "CO3", "HM1");
+        console.log(GameActions.print(game));
+        expect(result.validationResult.success).to.eq(false);
+
     })
 });

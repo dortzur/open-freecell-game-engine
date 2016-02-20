@@ -6,6 +6,7 @@ function Card(cardNotation) {
     const id = cardNotation;
     const value = id[0];
     const suit = id[1];
+    const suitRank = Notation.suitRank.indexOf(suit);
     const rank = Notation.cardRank.indexOf(value);
     let color;
 
@@ -21,6 +22,7 @@ function Card(cardNotation) {
         id,
         value,
         suit,
+        suitRank,
         rank,
         color,
         colorRank
