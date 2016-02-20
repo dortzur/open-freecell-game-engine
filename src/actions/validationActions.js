@@ -71,10 +71,10 @@ function validateTopCardToColumnCard(game, movedCellId, targetCellId) {
 }
 //column card move;
 function validateColumnCardToColumnCard(movedCard, targetCard) {
-    if (!movedCard.id) {
+    if (!movedCard) {
         return ValidationResult(false, illegalMoves.inputError);
     }
-    if (!targetCard.id) {
+    if (!targetCard) {
         return ValidationResult(true);
     }
     if (CardActions.areCardsStackable(movedCard, targetCard)) {

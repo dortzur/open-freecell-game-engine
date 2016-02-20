@@ -2,6 +2,7 @@ const expect = require('chai').expect;
 const GameEngine = require('../src');
 const Game = GameEngine.Game;
 const GameActions = GameEngine.GameActions;
+const GamePositions = require("./fixtures/gamePositions");
 const illegalMoves = GameEngine.Notation.illegalMoves;
 describe('Miscellaneous tests', () => {
     it('prints game', () => {
@@ -24,5 +25,11 @@ describe('Miscellaneous tests', () => {
         result = GameActions.attemptMove(game, undefined, "CO6");
         expect(result.validationResult.illegalMove).to.eq(illegalMoves.inputError);
 
-    })
+    });
+    it("returns wrong move on empty column moves", ()=> {
+        var game = GamePositions.game1EmptyColumn();
+        var result = GameActions.attemptMove(game, "CO6", "CO7");
+        expect(result.validationResult.illegalMove).to.eq(illegalMoves.columnCellWrongColorOrRank);
+        console.log(GameActions.print(result.game));
+    });
 });
