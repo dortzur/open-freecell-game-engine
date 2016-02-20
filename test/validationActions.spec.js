@@ -1,10 +1,10 @@
 const expect = require('chai').expect;
 const GameEngine = require('../src');
 const GameActions = GameEngine.GameActions;
-const ValidationActions = GameEngine.ValidationActions;
 const Notation = GameEngine.Notation;
 const Game = GameEngine.Game;
 const illegalMoves = Notation.illegalMoves;
+const GamePositions = require("./fixtures/gamePositions");
 describe('ValidationActions', () => {
     it('validate COFC', () => {
         var game = Game(1);
@@ -108,17 +108,9 @@ describe('ValidationActions', () => {
 
     });
     it('validate COCO', () => {
-        var game = Game(1);
-        game = GameActions.attemptMove(game, "CO6", "FC1").game;
-        game = GameActions.attemptMove(game, "CO6", "FC2").game;
-        game = GameActions.attemptMove(game, "CO6", "HM1").game;
-        game = GameActions.attemptMove(game, "FC2", "HM1").game;
-        game = GameActions.attemptMove(game, "CO6", "HM2").game;
 
-        game = GameActions.attemptMove(game, "CO3", "FC2").game;
-        game = GameActions.attemptMove(game, "CO3", "FC3").game;
 
-        game = GameActions.attemptMove(game, "FC1", "CO3").game;
+        var game = GamePositions.game1StackedCards();
         console.log(GameActions.print(game));
         var result = GameActions.attemptMove(game, "CO3", "CO1");
         expect(result.validationResult.success).to.eq(false);
