@@ -74,9 +74,10 @@ function validateColumnCardToColumnCard(movedCard, targetCard) {
     if (!movedCard) {
         return ValidationResult(false, illegalMoves.inputError);
     }
-    if (!targetCard) {
-        return ValidationResult(true);
-    }
+
+    //if (!targetCard) {
+    //    return ValidationResult(true);
+    //}
     if (CardActions.areCardsStackable(movedCard, targetCard)) {
         return ValidationResult(true);
     }

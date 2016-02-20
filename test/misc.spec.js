@@ -31,5 +31,15 @@ describe('Miscellaneous tests', () => {
         var result = GameActions.attemptMove(game, "CO6", "CO7");
         expect(result.validationResult.illegalMove).to.eq(illegalMoves.columnCellWrongColorOrRank);
         console.log(GameActions.print(result.game));
+        result = GameActions.attemptMove(result.game, "CO8", "CO6");
+        console.log(GameActions.print(result.game));
+    });
+    it("returns illegal move on empty column to home cell and free cell", ()=> {
+        var game = GamePositions.game1EmptyColumn();
+        var result = GameActions.attemptMove(game, "CO6", "HM3");
+        expect(result.validationResult.illegalMove).to.eq(illegalMoves.inputError);
+        result = GameActions.attemptMove(game, "CO6", "FC4");
+        expect(result.validationResult.illegalMove).to.eq(illegalMoves.inputError);
+
     });
 });
