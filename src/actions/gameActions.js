@@ -3,7 +3,6 @@
 const illegalMoves = require("../models/notation").illegalMoves;
 const ValidationResult = require('../models/validationResult');
 const CellActions = require('./cellActions');
-const ValidationActions = require('./validationActions');
 const ValidationMap = require('../models/validationMap');
 const MoveResult = require('../models/moveResult');
 //
@@ -172,7 +171,7 @@ function print(game) {
     template += printCells(game.columns);
     return template;
 }
-const GameActions = {
+var GameActions = {
     calcAvailableMoves,
     emptyCellCount,
     validateMove,

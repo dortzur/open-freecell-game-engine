@@ -1,10 +1,9 @@
 "use strict";
 const ValidationResult = require("../models/validationResult");
 const Notation = require("../models/notation");
-const GameActions = require("./gameActions");
 const CellActions = require("./cellActions");
 const illegalMoves = Notation.illegalMoves;
-
+const GameActions = require('./gameActions');
 /*
  * Validation move logic
  *

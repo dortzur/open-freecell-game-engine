@@ -114,5 +114,12 @@ describe('ValidationActions', () => {
         game = GameActions.attemptMove(game, "CO6", "HM1").game;
         game = GameActions.attemptMove(game, "FC2", "HM1").game;
         game = GameActions.attemptMove(game, "CO6", "HM2").game;
+
+        game = GameActions.attemptMove(game, "CO3", "FC2").game;
+        game = GameActions.attemptMove(game, "CO3", "FC3").game;
+
+        game = GameActions.attemptMove(game, "FC1", "CO3").game;
+        console.log(GameActions.print(game));
+        game = GameActions.attemptMove(game, "CO3", "CO1").game;
     })
 });
