@@ -111,10 +111,18 @@ describe('ValidationActions', () => {
 
 
         var game = GamePositions.game1StackedCards();
-        console.log(GameActions.print(game));
         var result = GameActions.attemptMove(game, "CO3", "CO1");
         expect(result.validationResult.success).to.eq(false);
         expect(result.validationResult.illegalMove).to.eq(illegalMoves.columnCellWrongColorOrRank);
 
+        game = GameActions.attemptMove(game, "CO6", "FC1").game;
+        result = GameActions.attemptMove(game, "CO6", "CO7");
+        expect(result.validationResult.success).to.eq(true);
+        console.log(GameActions.print(game));
+        result = GameActions.attemptMove(game, "CO7", "CO6");
+        expect(result.validationResult.success).to.eq(true);
+        console.log(GameActions.print(game));
+        expect(result.game.columns.CO6[0].id).to.eq("8C");
+        expect(result.game.columns.CO6[1].id).to.eq("7H");
     })
 });

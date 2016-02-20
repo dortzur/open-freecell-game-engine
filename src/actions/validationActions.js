@@ -95,8 +95,9 @@ function validateColumnCellToColumnCell(game, movedCellId, targetCellId) {
     var movedStack = CellActions.getTopStack(movedCell, availableMoves);
     var targetCard = CellActions.getTopCard(targetCell);
 
-    var approvedStackIndex = movedStack.indexOf(function (movedCard) {
-        return validateColumnCardToColumnCard(movedCard, targetCard).validationResult.success;
+    var approvedStackIndex = movedStack.findIndex(function (movedCard) {
+         var result=validateColumnCardToColumnCard(movedCard, targetCard);
+        return result.success;
     });
     if (approvedStackIndex == -1) {
         return ValidationResult(false, illegalMoves.columnCellWrongColorOrRank);
