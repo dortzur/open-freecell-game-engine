@@ -5,11 +5,4 @@ const Game = require('../src').Game;
 describe('GameActions', () => {
 
 
-    it('calculates available moves', ()=> {
-        const game = Game(1);
-        const moves = GameActions.calcAvailableMoves(game.freeCells, game.columns);
-        expect(moves).to.eq(5);
-
-    });
-
 });

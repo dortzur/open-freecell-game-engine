@@ -1,6 +1,7 @@
 const CellActions = require('./cellActions');
 
-function calcAvailableMoves(game, isEmptyColumnTarget) {
+function calcAvailableMoves(game) {
+    const isEmptyColumnTarget = !!arguments[1];
     var emptyColumnCount = CellActions.emptyCellCount(game.columns);
     if (isEmptyColumnTarget && emptyColumnCount > 0) {
         emptyColumnCount--;
