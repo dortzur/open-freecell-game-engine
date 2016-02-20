@@ -3,7 +3,7 @@ const ValidationResult = require("../models/validationResult");
 const Notation = require("../models/notation");
 const CellActions = require("./cellActions");
 const illegalMoves = Notation.illegalMoves;
-const GameActions = require('./gameActions');
+const AnalysisActions = require('./analysisActions');
 /*
  * Validation move logic
  *
@@ -89,7 +89,7 @@ function validateColumnCellToColumnCell(game, movedCellId, targetCellId) {
     var movedCell = game.gameMap[movedCellId];
     var targetCell = game.gameMap[targetCellId];
     var isEmptyTarget = CellActions.isEmpty(targetCell);
-    var availableMoves = GameActions.calcAvailableMoves(game.freeCells, game.columns, isEmptyTarget);
+    var availableMoves = AnalysisActions.calcAvailableMoves(game, isEmptyTarget);
     if (isEmptyTarget) {
         return ValidationResult(true, null, availableMoves);
     }

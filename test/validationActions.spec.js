@@ -120,6 +120,9 @@ describe('ValidationActions', () => {
 
         game = GameActions.attemptMove(game, "FC1", "CO3").game;
         console.log(GameActions.print(game));
-        game = GameActions.attemptMove(game, "CO3", "CO1").game;
+        var result = GameActions.attemptMove(game, "CO3", "CO1");
+        expect(result.validationResult.success).to.eq(false);
+        expect(result.validationResult.illegalMove).to.eq(illegalMoves.columnCellWrongColorOrRank);
+
     })
 });
