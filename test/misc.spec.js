@@ -1,11 +1,11 @@
 const expect = require('chai').expect;
 const GameEngine = require('../src');
-const Game = require('../src').Game;
-const GameActions = require('../src').GameActions;
+const Game = GameEngine.Game;
+const GameActions = GameEngine.GameActions;
+const illegalMoves = GameEngine.Notation.illegalMoves;
 describe('Miscellaneous tests', () => {
     it('prints game', () => {
         var game = Game(1);
-        console.log(GameActions.print(game));
         game = GameActions.attemptMove(game, "CO6", "FC1").game;
         game = GameActions.attemptMove(game, "CO6", "FC2").game;
         game = GameActions.attemptMove(game, "CO6", "HM1").game;
@@ -13,4 +13,16 @@ describe('Miscellaneous tests', () => {
         game = GameActions.attemptMove(game, "FC2", "HM2").game;
         expect(GameActions.print(game).length).to.eq(366);
     });
+    it("returns invalid input errors", ()=> {
+        var game = Game(1);
+        var result = GameActions.attemptMove(game, "C06", "FC1");
+        expect(result.validationResult.illegalMove).to.eq(illegalMoves.inputError);
+        result = GameActions.attemptMove(game, "CO6", "FQ1");
+        expect(result.validationResult.illegalMove).to.eq(illegalMoves.inputError);
+        result = GameActions.attemptMove(game, "FQ1");
+        expect(result.validationResult.illegalMove).to.eq(illegalMoves.inputError);
+        result = GameActions.attemptMove(game, undefined, "CO6");
+        expect(result.validationResult.illegalMove).to.eq(illegalMoves.inputError);
+
+    })
 });

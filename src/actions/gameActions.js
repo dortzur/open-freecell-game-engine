@@ -8,6 +8,8 @@ const MoveResult = require('../models/moveResult');
 
 
 function getMoveId(movedCellId, targetCellId) {
+    movedCellId = movedCellId || "";
+    targetCellId = targetCellId || "";
     const movedCellType = CellActions.getCellType(movedCellId);
     const targetCellType = CellActions.getCellType(targetCellId);
     return movedCellType + targetCellType;
