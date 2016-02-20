@@ -69,7 +69,6 @@ function validateTopCardToColumnCard(game, movedCellId, targetCellId) {
 
     return validateColumnCardToColumnCard(movedCard, targetCard);
 }
-
 //column card move;
 function validateColumnCardToColumnCard(movedCard, targetCard) {
     if (!movedCard.id) {
@@ -78,10 +77,10 @@ function validateColumnCardToColumnCard(movedCard, targetCard) {
     if (!targetCard.id) {
         return ValidationResult(true);
     }
-    if (movedCard.color == targetCard.color || movedCard.rank - targetCard.rank != -1) {
-        return ValidationResult(false, illegalMoves.columnCellWrongColorOrRank);
+    if (CardActions.areCardsStackable(movedCard, targetCard)) {
+        return ValidationResult(true);
     }
-    return ValidationResult(true);
+    return ValidationResult(false, illegalMoves.columnCellWrongColorOrRank);
 }
 
 // calc max stack size; descending stack; column card move;
@@ -99,7 +98,7 @@ function validateColumnCellToColumnCell(game, movedCellId, targetCellId) {
     var approvedStackIndex = movedStack.indexOf(function (movedCard) {
         return validateColumnCardToColumnCard(movedCard, targetCard).validationResult.success;
     });
-    if(approvedStackIndex==-1) {
+    if (approvedStackIndex == -1) {
         return ValidationResult(false, illegalMoves.columnCellWrongColorOrRank);
     }
     var approvedStackSize = movedStack.length - approvedStackIndex;
