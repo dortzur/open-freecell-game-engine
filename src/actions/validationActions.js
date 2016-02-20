@@ -4,6 +4,7 @@ const Notation = require("../models/notation");
 const CellActions = require("./cellActions");
 const illegalMoves = Notation.illegalMoves;
 const AnalysisActions = require('./analysisActions');
+const CardActions = require('./cardActions');
 /*
  * Validation move logic
  *
@@ -23,7 +24,6 @@ const AnalysisActions = require('./analysisActions');
 
 
 //CO to CO calc available stack should include whether target cell is empty
-const isCard = (card)=>card && card.id && card.notation;
 
 
 //top card; is target empty
@@ -32,7 +32,7 @@ function validateTopCardToEmptyCell(game, movedCellId, targetCellId) {
     var topCard = CellActions.getTopCard(movedCell);
     var targetCell = game.gameMap[targetCellId];
 
-    if (!isCard(topCard)) {
+    if (!CardActions.isCard(topCard)) {
         return ValidationResult(false, illegalMoves.inputError);
 
     }
@@ -44,7 +44,7 @@ function validateTopCardToHomeCell(game, movedCellId, targetCellId) {
     var card = CellActions.getTopCard(movedCell);
     var homeCell = game.gameMap[targetCellId];
 
-    if (!isCard(card)) {
+    if (!CardActions.isCard(card)) {
         return ValidationResult(false, illegalMoves.inputError);
     }
     if (CellActions.isEmpty(homeCell)) {
